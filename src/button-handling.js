@@ -1,4 +1,4 @@
-import { postMessage, deleteMessage } from "./requests";
+import * as Requests from "./requests";
 import { POST_MESSAGE_URL, DELETE_MESSAGE_URL } from "./index";
 
 /**
@@ -15,7 +15,7 @@ export function messageUploaderSetup(form) {
     let formData = new FormData(form);
 
     // Post message with the form data and reload page
-    postMessage(
+    Requests.postMessage(
       POST_MESSAGE_URL,
       formData.get("author"),
       formData.get("message"),
@@ -46,7 +46,7 @@ export function messageDeleteSetup(formsArray) {
       let formData = new FormData(form);
 
       // Delete message from id on form and reload page
-      deleteMessage(DELETE_MESSAGE_URL, formData.get("id"), () => {
+      Requests.deleteMessage(DELETE_MESSAGE_URL, formData.get("id"), () => {
         // After deleting, reload page
         window.location.reload();
       });
