@@ -18,9 +18,9 @@ import Message from "./components/message";
  *
  * The array is passed as a parameter into the callback function if no error happened.
  * @param {string} listMessagesURL - The URL to where it sends the request
- * @param {listAllCallback} _callback - The callback function
+ * @param {listAllCallback} callback - The callback function
  */
-export function listAll(listMessagesURL, _callback) {
+export function listAll(listMessagesURL, callback) {
   const compareMessages = (a, b) => b.createdAt - a.createdAt;
   // Function used for comparing the messages to sort them.
   // Returns either a positive or negative number depending on which message was created first.
@@ -64,8 +64,8 @@ export function listAll(listMessagesURL, _callback) {
       }
 
       // Process data in a callback
-      if (typeof _callback !== "undefined") {
-        _callback(messagesJSX);
+      if (typeof callback !== "undefined") {
+        callback(messagesJSX);
       }
     } else {
       // If an error happens
@@ -86,7 +86,7 @@ export function listAll(listMessagesURL, _callback) {
  * @param {string} postMessageURL - The URL to where it sends the request
  * @param {string} author - Author of message
  * @param {string} message - Text from message
- * @param {xhrResponseTextCallback} _callback - The callback function
+ * @param {xhrResponseTextCallback} [_callback] - The callback function
  */
 export function postMessage(postMessageURL, author, message, _callback) {
   // Body of the request
@@ -126,7 +126,7 @@ export function postMessage(postMessageURL, author, message, _callback) {
  * A JSON object containing xhr.responseText is passed as a parameter into the callback function if no error happened.
  * @param {string} deleteMessageURL - The URL to where it sends the request
  * @param {string} id - ID of message
- * @param {xhrResponseTextCallback} _callback - The callback function
+ * @param {xhrResponseTextCallback} [_callback] - The callback function
  */
 export function deleteMessage(deleteMessageURL, id, _callback) {
   // Body of the request
