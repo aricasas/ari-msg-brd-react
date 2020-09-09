@@ -33,8 +33,7 @@ export function messageUploaderSetup(form) {
  */
 export function messageDeleteSetup(formsArray) {
   // Every message has a form with their id as a hidden value and the delete button is the submit button
-
-  // For the hidden form of every message
+  // For the hidden form in every message
   for (let i = 0; i < formsArray.length; i++) {
     let form = formsArray[i];
 
