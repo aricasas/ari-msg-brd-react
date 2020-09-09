@@ -3,7 +3,7 @@ import { POST_MESSAGE_URL, DELETE_MESSAGE_URL } from "./index";
 
 /**
  * Adds an event listener to the form in order to post a message when the submit button is clicked.
- * @param {HTMLElement} form - The form object from the message uploader.
+ * @param {HTMLElement} form - The form object from the message uploader
  */
 export function messageUploaderSetup(form) {
   // Add function to execute on submit
@@ -29,7 +29,7 @@ export function messageUploaderSetup(form) {
 
 /**
  * Adds an event listener to every form in order to delete the message when the delete button is clicked.
- * @param {HTMLCollectionOf<Element>} formsArray - An array containing a form HTMLElement for every delete button.
+ * @param {HTMLCollectionOf<Element>} formsArray - An array containing a form HTMLElement for every delete button
  */
 export function messageDeleteSetup(formsArray) {
   // Every message has a form with their id as a hidden value and the delete button is the submit button
