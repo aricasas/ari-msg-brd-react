@@ -1,10 +1,17 @@
 import React from "react";
 import Message from "./components/message";
 
+/**
+ * Makes a GET request to the provided URL and parses the messages that the server returns.
+ * It then sorts them and stores JSX Messages in an array.
+ * The array is passed as a parameter into the callback function if no error happened.
+ * @param {string} listMessagesURL - The URL
+ * @param {function} _callback - The callback function
+ */
 export function listAll(listMessagesURL, _callback) {
+  const compareMessages = (a, b) => b.createdAt - a.createdAt;
   // Function used for comparing the messages to sort them.
   // Returns either a positive or negative number depending on which message was created first.
-  const compareMessages = (a, b) => b.createdAt - a.createdAt;
 
   let xhr = new XMLHttpRequest();
 
@@ -58,6 +65,15 @@ export function listAll(listMessagesURL, _callback) {
   xhr.send(null);
 }
 
+/**
+ * Makes a POST request to the provided URL with the author and message as a JSON encoded string.
+ * It should post a message to the database
+ * The xhr.responseText is passed as a parameter into the callback function if no error happened.
+ * @param {string} postMessageURL - The URL
+ * @param {string} author - Author of message
+ * @param {string} message - Text from message
+ * @param {function} _callback - The callback function
+ */
 export function postMessage(postMessageURL, author, message, _callback) {
   // Body of the request
   const body = { author: author, message: message };
@@ -88,6 +104,14 @@ export function postMessage(postMessageURL, author, message, _callback) {
   xhr.send(JSON.stringify(body));
 }
 
+/**
+ * Makes a POST request to the provided URL with the id as a JSON encoded string.
+ * It should delete the message associated with that id from the database
+ * The xhr.responseText is passed as a parameter into the callback function if no error happened.
+ * @param {string} deleteMessageURL - The URL
+ * @param {string} id - ID of message
+ * @param {function} _callback - The callback function
+ */
 export function deleteMessage(deleteMessageURL, id, _callback) {
   // Body of the request
   const body = { id: id };

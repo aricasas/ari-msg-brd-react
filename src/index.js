@@ -8,10 +8,13 @@ import MessageUploader from "./components/message-uploader";
 import "./style.css";
 
 // Constants storing the URLs of the API
+/** Constant string storing URL for posting messages through my API. */
 export const POST_MESSAGE_URL =
   "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/postMessage";
+/** Constant string storing URL for deleting messages through my API. */
 export const DELETE_MESSAGE_URL =
   "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/deleteMessage";
+/** Constant string storing URL for getting a list of messages through my API. */
 export const LIST_MESSAGES_URL =
   "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/listAll";
 
