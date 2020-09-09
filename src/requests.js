@@ -1,14 +1,25 @@
 import React from "react";
 import Message from "./components/message";
 
+// Defining Callback types for JSDoc
+/**
+ * @callback listAllCallback
+ * lalalala
+ * @param {Message[]} messages - Array of JSX Messages
+ */
+/**
+ * @callback xhrResponseTextCallback
+ * @param {object} response - A JSON object containing xhr.responseText
+ */
+
 /**
  * Makes a GET request to the provided URL and parses the messages that the server returns.
  *
- * It then sorts them and stores JSX Messages in an array.
+ * It then sorts them by date (newest first) and stores JSX Messages in an array.
  *
  * The array is passed as a parameter into the callback function if no error happened.
  * @param {string} listMessagesURL - The URL to where it sends the request
- * @param {function} _callback - The callback function
+ * @param {listAllCallback} _callback - The callback function
  */
 export function listAll(listMessagesURL, _callback) {
   const compareMessages = (a, b) => b.createdAt - a.createdAt;
@@ -72,11 +83,11 @@ export function listAll(listMessagesURL, _callback) {
  *
  * If there are no errors, it should post a message to the database.
  *
- * The xhr.responseText is passed as a parameter into the callback function if no error happened.
+ * A JSON object containing xhr.responseText is passed as a parameter into the callback function if no error happened.
  * @param {string} postMessageURL - The URL to where it sends the request
  * @param {string} author - Author of message
  * @param {string} message - Text from message
- * @param {function} _callback - The callback function
+ * @param {xhrResponseTextCallback} _callback - The callback function
  */
 export function postMessage(postMessageURL, author, message, _callback) {
   // Body of the request
@@ -113,10 +124,10 @@ export function postMessage(postMessageURL, author, message, _callback) {
  *
  * If there are no errors, ft should delete the message associated with that id from the database.
  *
- * The xhr.responseText is passed as a parameter into the callback function if no error happened.
+ * A JSON object containing xhr.responseText is passed as a parameter into the callback function if no error happened.
  * @param {string} deleteMessageURL - The URL to where it sends the request
  * @param {string} id - ID of message
- * @param {function} _callback - The callback function
+ * @param {xhrResponseTextCallback} _callback - The callback function
  */
 export function deleteMessage(deleteMessageURL, id, _callback) {
   // Body of the request
