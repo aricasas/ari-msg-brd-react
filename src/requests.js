@@ -4,7 +4,6 @@ import Message from "./components/message";
 // Defining Callback types for JSDoc
 /**
  * @callback listAllCallback
- * lalalala
  * @param {Message[]} messages - Array of JSX Messages
  */
 /**
