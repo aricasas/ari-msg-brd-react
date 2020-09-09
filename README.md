@@ -1,3 +1,10 @@
+## TODO:
+* Image uploading
+* Change the delete button to be a normal button without a form
+* Maybe make requests using fetch() instead of XMLHttpRequest
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
