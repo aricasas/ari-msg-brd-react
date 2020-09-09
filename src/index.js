@@ -1,17 +1,43 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import * as Requests from "./requests";
+import * as ButtonHandling from "./button-handling";
+import Title from "./components/title";
+import MessageUploader from "./components/message-uploader";
 
+import "./style.css";
+
+// Constants storing the URLs of the API
+export const POST_MESSAGE_URL =
+  "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/postMessage";
+export const DELETE_MESSAGE_URL =
+  "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/deleteMessage";
+export const LIST_MESSAGES_URL =
+  "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/listAll";
+
+// Render title
+ReactDOM.render(<Title />, document.getElementById("title-wrapper"));
+
+// Get messages from database
+Requests.listAll(LIST_MESSAGES_URL, (messages) => {
+  // Render messages
+  ReactDOM.render(messages, document.getElementById("messages-wrapper"), () => {
+    // Set up the delete buttons
+    // (Has to be done after rendering the messages because the delete buttons are inside of them)
+    ButtonHandling.messageDeleteSetup(
+      document.getElementsByClassName("message-delete-form")
+    );
+  });
+});
+
+// Render message uploader
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <MessageUploader />,
+  document.getElementById("message-uploader-wrapper"),
+  () => {
+    // Set up button handling of the message uploader after rendering it
+    ButtonHandling.messageUploaderSetup(
+      document.getElementById("message-uploader-form")
+    );
+  }
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
