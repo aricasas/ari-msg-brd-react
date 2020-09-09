@@ -18,7 +18,7 @@ export const DELETE_MESSAGE_URL =
 export const LIST_MESSAGES_URL =
   "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/listAll";
 
-// Render title
+// Render title inside title-wrapper
 ReactDOM.render(<Title />, document.getElementById("title-wrapper"));
 
 // Get messages from database
