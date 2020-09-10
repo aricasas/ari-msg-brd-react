@@ -30,20 +30,18 @@ export function listAll(listMessagesURL, callback) {
   // Function used for comparing the messages to sort them.
   // Returns either a positive or negative number depending on which message was created first.
 
-  let xhr = new XMLHttpRequest();
-
-  // Set up GET request at specified URL
-  xhr.open("GET", listMessagesURL);
-
-  xhr.onload = function () {
-    // When recieving the response
-
-    if (xhr.status === 200) {
-      // If successful
-
-      // Parse the messages from the response
-      let receivedMessages = JSON.parse(xhr.responseText);
-
+  // GET request
+  fetch(listMessagesURL)
+    .then((response) => {
+      if (!response.ok) {
+        // If an error happened, throw the response status code
+        throw new Error(response.status);
+      } else {
+        // Else, return parsed response
+        return response.json();
+      }
+    })
+    .then((receivedMessages) => {
       // Sort messages by date (newest first)
       receivedMessages.sort(compareMessages);
 
@@ -67,19 +65,17 @@ export function listAll(listMessagesURL, callback) {
           />
         );
       }
-
-      // Process data in a callback
-      if (typeof callback !== "undefined") {
-        callback(messagesJSX);
-      }
-    } else {
-      // If an error happens
-      console.log("Request failed.  Returned status of " + xhr.status);
-    }
-  };
-
-  // Send request with no body
-  xhr.send(null);
+      return messagesJSX;
+    })
+    // Process data in callback
+    .then(callback)
+    .catch((error) => {
+      // If an error ocurred, display in console
+      console.error(
+        "An error ocurred while fetching messages. Response status code: ",
+        error
+      );
+    });
 }
 
 /**
