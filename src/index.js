@@ -7,22 +7,30 @@ import MessageUploader from "./components/message-uploader";
 
 import "./style.css";
 
-// Constants storing the URLs of the API
-/** Constant string storing URL for posting messages through my API. */
-export const POST_MESSAGE_URL =
-  "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/postMessage";
-/** Constant string storing URL for deleting messages through my API. */
-export const DELETE_MESSAGE_URL =
-  "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/deleteMessage";
-/** Constant string storing URL for getting a list of messages through my API. */
-export const LIST_MESSAGES_URL =
-  "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/listAll";
+/**
+ * URLs of my API.
+ *
+ * Every call to the API will be using these URLs so if any API endpoint changes. It can be easily modified here.
+ * @namespace API_URLS
+ */
+export const API_URLS = {
+  // Constants storing the URLs of the API
+  /** Constant string storing URL for posting messages through my API. */
+  POST_MESSAGE_URL:
+    "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/postMessage",
+  /** Constant string storing URL for deleting messages through my API. */
+  DELETE_MESSAGE_URL:
+    "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/deleteMessage",
+  /** Constant string storing URL for getting a list of messages through my API. */
+  LIST_MESSAGES_URL:
+    "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/listAll",
+};
 
 // Render title inside title-wrapper
 ReactDOM.render(<Title />, document.getElementById("title-wrapper"));
 
 // Get messages from database
-Requests.listAll(LIST_MESSAGES_URL, (messages) => {
+Requests.listAll(API_URLS.LIST_MESSAGES_URL, (messages) => {
   // Render messages
   ReactDOM.render(messages, document.getElementById("messages-wrapper"), () => {
     // Set up the delete buttons
