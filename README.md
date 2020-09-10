@@ -4,6 +4,60 @@
 - Change the delete button to be a normal button without a form
 - Maybe make requests using fetch() instead of XMLHttpRequest
 
+## Modules
+
+<dl>
+<dt><a href="#module_ButtonHandling">ButtonHandling</a></dt>
+<dd><p>Functions wich set up the behaviour for the buttons in the page.</p>
+</dd>
+<dt><a href="#module_Requests">Requests</a></dt>
+<dd><p>Functions containing HTTP requests to my API.</p>
+</dd>
+</dl>
+
+## Objects
+
+<dl>
+<dt><a href="#API_URLS">API_URLS</a> : <code>object</code></dt>
+<dd><p>URLs of my API.</p>
+<p>Every call to the API will be using these URLs so if any API endpoint changes. It can be easily modified here.</p>
+</dd>
+</dl>
+
+<a name="module_ButtonHandling"></a>
+
+## ButtonHandling
+
+Functions wich set up the behaviour for the buttons in the page.
+
+- [ButtonHandling](#module_ButtonHandling)
+  - [.messageUploaderSetup(form)](#module_ButtonHandling.messageUploaderSetup)
+  - [.messageDeleteSetup(formsArray)](#module_ButtonHandling.messageDeleteSetup)
+
+<a name="module_ButtonHandling.messageUploaderSetup"></a>
+
+### ButtonHandling.messageUploaderSetup(form)
+
+Adds an event listener to the form in order to post a message when the submit button is clicked.
+
+**Kind**: static method of [<code>ButtonHandling</code>](#module_ButtonHandling)
+
+| Param | Type                     | Description                               |
+| ----- | ------------------------ | ----------------------------------------- |
+| form  | <code>HTMLElement</code> | The form object from the message uploader |
+
+<a name="module_ButtonHandling.messageDeleteSetup"></a>
+
+### ButtonHandling.messageDeleteSetup(formsArray)
+
+Adds an event listener to every form in the array to delete the message when the delete button is clicked.
+
+**Kind**: static method of [<code>ButtonHandling</code>](#module_ButtonHandling)
+
+| Param      | Type                                          | Description                                                    |
+| ---------- | --------------------------------------------- | -------------------------------------------------------------- |
+| formsArray | <code>HTMLCollectionOf.&lt;Element&gt;</code> | An array containing a form HTMLElement for every delete button |
+
 <a name="module_Requests"></a>
 
 ## Requests
@@ -92,3 +146,40 @@ A JSON object containing xhr.responseText is passed as a parameter into the call
 | Param    | Type                | Description                               |
 | -------- | ------------------- | ----------------------------------------- |
 | response | <code>object</code> | A JSON object containing xhr.responseText |
+
+<a name="API_URLS"></a>
+
+## API_URLS : <code>object</code>
+
+URLs of my API.
+
+Every call to the API will be using these URLs so if any API endpoint changes. It can be easily modified here.
+
+**Kind**: global namespace
+
+- [API_URLS](#API_URLS) : <code>object</code>
+  - [.POST_MESSAGE_URL](#API_URLS.POST_MESSAGE_URL)
+  - [.DELETE_MESSAGE_URL](#API_URLS.DELETE_MESSAGE_URL)
+  - [.LIST_MESSAGES_URL](#API_URLS.LIST_MESSAGES_URL)
+
+<a name="API_URLS.POST_MESSAGE_URL"></a>
+
+### API_URLS.POST_MESSAGE_URL
+
+Constant string storing URL for posting messages through my API.
+
+**Kind**: static property of [<code>API_URLS</code>](#API_URLS)  
+<a name="API_URLS.DELETE_MESSAGE_URL"></a>
+
+### API_URLS.DELETE_MESSAGE_URL
+
+Constant string storing URL for deleting messages through my API.
+
+**Kind**: static property of [<code>API_URLS</code>](#API_URLS)  
+<a name="API_URLS.LIST_MESSAGES_URL"></a>
+
+### API_URLS.LIST_MESSAGES_URL
+
+Constant string storing URL for getting a list of messages through my API.
+
+**Kind**: static property of [<code>API_URLS</code>](#API_URLS)
