@@ -4,6 +4,10 @@
 - Change the delete button to be a normal button without a form
 - Maybe make requests using fetch() instead of XMLHttpRequest
 
+---
+
+# Documentation
+
 ## Modules
 
 <dl>
@@ -23,6 +27,8 @@
 <p>Every call to the API will be using these URLs so if any API endpoint changes. It can be easily modified here.</p>
 </dd>
 </dl>
+
+---
 
 <a name="module_ButtonHandling"></a>
 
@@ -57,6 +63,8 @@ Adds an event listener to every form in the array to delete the message when the
 | Param      | Type                                          | Description                                                    |
 | ---------- | --------------------------------------------- | -------------------------------------------------------------- |
 | formsArray | <code>HTMLCollectionOf.&lt;Element&gt;</code> | An array containing a form HTMLElement for every delete button |
+
+---
 
 <a name="module_Requests"></a>
 
@@ -146,6 +154,8 @@ A JSON object containing xhr.responseText is passed as a parameter into the call
 | Param    | Type                | Description                               |
 | -------- | ------------------- | ----------------------------------------- |
 | response | <code>object</code> | A JSON object containing xhr.responseText |
+
+---
 
 <a name="API_URLS"></a>
 
