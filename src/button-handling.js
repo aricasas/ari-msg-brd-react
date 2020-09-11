@@ -23,12 +23,11 @@ export function messageUploaderSetup(form) {
     Requests.postMessage(
       API_URLS.POST_MESSAGE_URL,
       formData.get("author"),
-      formData.get("message"),
-      () => {
-        // After posting, reload page
-        window.location.reload();
-      }
-    );
+      formData.get("message")
+    ).then(() => {
+      // After posting, reload page
+      window.location.reload();
+    });
   });
 }
 

@@ -74,40 +74,34 @@ export async function listAll(listMessagesURL) {
  *
  * If there are no errors, it should post a message to the database.
  *
- * A JSON object containing xhr.responseText is passed as a parameter into the callback function if no error happened.
+ * Returns a Promise representing a JSON object containing xhr.responseText if no error happened.
  * @param {string} postMessageURL - The URL to where it sends the request
  * @param {string} author - Author of message
  * @param {string} message - Text from message
- * @param {xhrResponseTextCallback} [_callback] - The callback function
+ * @returns {Promise} - Promise object representing a JSON object containing xhr.responseText
  */
-export function postMessage(postMessageURL, author, message, _callback) {
-  // Body of the request
-  const body = { author: author, message: message };
 
-  let xhr = new XMLHttpRequest();
+export async function postMessage(postMessageURL, author, message) {
+  const data = { author: author, message: message };
 
-  // Set up POST request at specified URL
-  xhr.open("POST", postMessageURL);
-
-  // Specify what format of data we are sending (JSON) through a header
-  xhr.setRequestHeader("Content-Type", "application/json");
-
-  xhr.onload = function () {
-    // When recieving the response
-
-    if (xhr.status === 200) {
-      // Process data in a callback
-      if (typeof _callback !== "undefined") {
-        _callback(JSON.parse(xhr.responseText));
-      }
+  // Return result of POST request
+  return fetch(postMessageURL, {
+    method: "POST",
+    headers: {
+      // Specify what format of data we are sending (JSON) through a header
+      "Content-Type": "application/json",
+    },
+    // Use our data as the body of the request
+    body: JSON.stringify(data),
+  }).then((response) => {
+    if (!response.ok) {
+      // If an error happened, throw the response status code
+      throw new Error(response.status);
     } else {
-      // If an error happens
-      console.log("Request failed.  Returned status of " + xhr.status);
+      // Else, return parsed response
+      return response.json();
     }
-  };
-
-  // Send request
-  xhr.send(JSON.stringify(body));
+  });
 }
 
 /**
