@@ -19,7 +19,7 @@ import Message from "./components/message";
  *
  * Returns a promise of that array.
  * @param {string} listMessagesURL - The URL to where it sends the request
- * @returns {Promise} Promise object representing an array of JSX Messages
+ * @returns {Promise} - Promise object representing an array of JSX Messages
  */
 export async function listAll(listMessagesURL) {
   const compareMessages = (a, b) => b.createdAt - a.createdAt;
