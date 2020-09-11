@@ -28,8 +28,6 @@
 </dd>
 </dl>
 
----
-
 <a name="module_ButtonHandling"></a>
 
 ## ButtonHandling
@@ -64,8 +62,6 @@ Adds an event listener to every form in the array to delete the message when the
 | ---------- | --------------------------------------------- | -------------------------------------------------------------- |
 | formsArray | <code>HTMLCollectionOf.&lt;Element&gt;</code> | An array containing a form HTMLElement for every delete button |
 
----
-
 <a name="module_Requests"></a>
 
 ## Requests
@@ -73,12 +69,9 @@ Adds an event listener to every form in the array to delete the message when the
 Functions containing HTTP requests to my API.
 
 - [Requests](#module_Requests)
-  - _static_
-    - [.listAll(listMessagesURL)](#module_Requests.listAll) ⇒ <code>Promise</code>
-    - [.postMessage(postMessageURL, author, message, [\_callback])](#module_Requests.postMessage)
-    - [.deleteMessage(deleteMessageURL, id, [\_callback])](#module_Requests.deleteMessage)
-  - _inner_
-    - [~xhrResponseTextCallback](#module_Requests..xhrResponseTextCallback) : <code>function</code>
+  - [.listAll(listMessagesURL)](#module_Requests.listAll) ⇒ <code>Promise</code>
+  - [.postMessage(postMessageURL, author, message)](#module_Requests.postMessage) ⇒ <code>Promise</code>
+  - [.deleteMessage(deleteMessageURL, id)](#module_Requests.deleteMessage) ⇒ <code>Promise</code>
 
 <a name="module_Requests.listAll"></a>
 
@@ -91,7 +84,7 @@ It then sorts them by date (newest first) and stores JSX Messages in an array.
 Returns a promise of that array.
 
 **Kind**: static method of [<code>Requests</code>](#module_Requests)  
-**Returns**: <code>Promise</code> - Promise object representing an array of JSX Messages
+**Returns**: <code>Promise</code> - - Promise object representing an array of JSX Messages
 
 | Param           | Type                | Description                           |
 | --------------- | ------------------- | ------------------------------------- |
@@ -99,52 +92,40 @@ Returns a promise of that array.
 
 <a name="module_Requests.postMessage"></a>
 
-### Requests.postMessage(postMessageURL, author, message, [_callback])
+### Requests.postMessage(postMessageURL, author, message) ⇒ <code>Promise</code>
 
 Makes a POST request to the provided URL with the author and message as a JSON encoded string.
 
 If there are no errors, it should post a message to the database.
 
-A JSON object containing xhr.responseText is passed as a parameter into the callback function if no error happened.
+Returns a Promise representing a JSON object containing the response if no error happened.
 
-**Kind**: static method of [<code>Requests</code>](#module_Requests)
+**Kind**: static method of [<code>Requests</code>](#module_Requests)  
+**Returns**: <code>Promise</code> - - Promise object representing a JSON object containing the response
 
-| Param          | Type                                 | Description                           |
-| -------------- | ------------------------------------ | ------------------------------------- |
-| postMessageURL | <code>string</code>                  | The URL to where it sends the request |
-| author         | <code>string</code>                  | Author of message                     |
-| message        | <code>string</code>                  | Text from message                     |
-| [_callback]    | <code>xhrResponseTextCallback</code> | The callback function                 |
+| Param          | Type                | Description                           |
+| -------------- | ------------------- | ------------------------------------- |
+| postMessageURL | <code>string</code> | The URL to where it sends the request |
+| author         | <code>string</code> | Author of message                     |
+| message        | <code>string</code> | Text from message                     |
 
 <a name="module_Requests.deleteMessage"></a>
 
-### Requests.deleteMessage(deleteMessageURL, id, [_callback])
+### Requests.deleteMessage(deleteMessageURL, id) ⇒ <code>Promise</code>
 
 Makes a POST request to the provided URL with the id as a JSON encoded string.
 
-If there are no errors, ft should delete the message associated with that id from the database.
+If there are no errors, it should delete the message associated with that id from the database.
 
-A JSON object containing xhr.responseText is passed as a parameter into the callback function if no error happened.
+Returns a Promise representing a JSON object containing the response if no error happened.
 
-**Kind**: static method of [<code>Requests</code>](#module_Requests)
+**Kind**: static method of [<code>Requests</code>](#module_Requests)  
+**Returns**: <code>Promise</code> - - Promise object representing a JSON object containing the response
 
-| Param            | Type                                 | Description                           |
-| ---------------- | ------------------------------------ | ------------------------------------- |
-| deleteMessageURL | <code>string</code>                  | The URL to where it sends the request |
-| id               | <code>string</code>                  | ID of message                         |
-| [_callback]      | <code>xhrResponseTextCallback</code> | The callback function                 |
-
-<a name="module_Requests..xhrResponseTextCallback"></a>
-
-### Requests~xhrResponseTextCallback : <code>function</code>
-
-**Kind**: inner typedef of [<code>Requests</code>](#module_Requests)
-
-| Param    | Type                | Description                               |
-| -------- | ------------------- | ----------------------------------------- |
-| response | <code>object</code> | A JSON object containing xhr.responseText |
-
----
+| Param            | Type                | Description                           |
+| ---------------- | ------------------- | ------------------------------------- |
+| deleteMessageURL | <code>string</code> | The URL to where it sends the request |
+| id               | <code>string</code> | ID of message                         |
 
 <a name="API_URLS"></a>
 
