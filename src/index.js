@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as Requests from "./requests";
-import * as ButtonHandling from "./button-handling";
 import Title from "./components/title";
 import MessageUploader from "./components/message-uploader";
 
@@ -38,11 +37,5 @@ Requests.listAll(API_URLS.LIST_MESSAGES_URL).then((messages) => {
 // Render message uploader
 ReactDOM.render(
   <MessageUploader />,
-  document.getElementById("message-uploader-wrapper"),
-  () => {
-    // Set up button handling of the message uploader after rendering it
-    ButtonHandling.messageUploaderSetup(
-      document.getElementById("message-uploader-form")
-    );
-  }
+  document.getElementById("message-uploader-wrapper")
 );
