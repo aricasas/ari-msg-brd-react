@@ -1,17 +1,26 @@
 import React, { Component } from "react";
+import { API_URLS } from "./../index";
+import { deleteMessage } from "./../requests";
 
 class Message extends Component {
+  constructor(props) {
+    super(props);
+
+    // This binding is necessary to make `this` work in the callback
+    this.deleteThisMessage = this.deleteThisMessage.bind(this);
+  }
+  deleteThisMessage() {
+    deleteMessage(API_URLS.DELETE_MESSAGE_URL, this.props.id).then(() => {
+      // After deleting, reload page
+      window.location.reload();
+    });
+  }
   render() {
     return (
       <div className="message">
-        <form className="message-delete-form">
-          {/* Every message has a form with their id as a hidden value and the delete button is the submit button.
-              Should probably be changed to a single button without the form and instead of 
-              storing id as a hidden input, access it through this.props or something
-          */}
-          <input type="hidden" id="id" name="id" value={this.props.id} />
-          <input className="delete-button" type="submit" value="Delete" />
-        </form>
+        <button className="delete-button" onClick={this.deleteThisMessage}>
+          Delete
+        </button>
         <p className="message-author">{this.props.author}</p>
         <p className="message-text">{this.props.message}</p>
         <p className="message-date">{this.props.date}</p>

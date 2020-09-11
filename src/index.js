@@ -32,13 +32,7 @@ ReactDOM.render(<Title />, document.getElementById("title-wrapper"));
 // Get messages from database
 Requests.listAll(API_URLS.LIST_MESSAGES_URL).then((messages) => {
   // Render messages
-  ReactDOM.render(messages, document.getElementById("messages-wrapper"), () => {
-    // Set up the delete buttons
-    // (Has to be done after rendering the messages because the delete buttons are inside of them)
-    ButtonHandling.messageDeleteSetup(
-      document.getElementsByClassName("message-delete-form")
-    );
-  });
+  ReactDOM.render(messages, document.getElementById("messages-wrapper"));
 });
 
 // Render message uploader

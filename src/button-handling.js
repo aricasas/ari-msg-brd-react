@@ -30,33 +30,3 @@ export function messageUploaderSetup(form) {
     });
   });
 }
-
-/**
- * Adds an event listener to every form in the array to delete the message when the delete button is clicked.
- * @param {HTMLCollectionOf<Element>} formsArray - An array containing a form HTMLElement for every delete button
- */
-export function messageDeleteSetup(formsArray) {
-  // Every message has a form with their id as a hidden value and the delete button is the submit button
-  // For the hidden form in every message
-  for (let i = 0; i < formsArray.length; i++) {
-    let form = formsArray[i];
-
-    // Add function to execute on submit
-    form.addEventListener("submit", (event) => {
-      // Stop default behaviour of form submit
-      event.preventDefault();
-
-      // Get FormData object storing the value of the hidden input that has the id
-      let formData = new FormData(form);
-
-      // Delete message from id on form and reload page
-      Requests.deleteMessage(
-        API_URLS.DELETE_MESSAGE_URL,
-        formData.get("id")
-      ).then(() => {
-        // After deleting, reload page
-        window.location.reload();
-      });
-    });
-  }
-}
