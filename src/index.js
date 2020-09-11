@@ -30,7 +30,7 @@ export const API_URLS = {
 ReactDOM.render(<Title />, document.getElementById("title-wrapper"));
 
 // Get messages from database
-Requests.listAll(API_URLS.LIST_MESSAGES_URL, (messages) => {
+Requests.listAll(API_URLS.LIST_MESSAGES_URL).then((messages) => {
   // Render messages
   ReactDOM.render(messages, document.getElementById("messages-wrapper"), () => {
     // Set up the delete buttons

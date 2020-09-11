@@ -74,29 +74,28 @@ Functions containing HTTP requests to my API.
 
 - [Requests](#module_Requests)
   - _static_
-    - [.listAll(listMessagesURL, callback)](#module_Requests.listAll)
+    - [.listAll(listMessagesURL)](#module_Requests.listAll) ⇒ <code>Promise</code>
     - [.postMessage(postMessageURL, author, message, [\_callback])](#module_Requests.postMessage)
     - [.deleteMessage(deleteMessageURL, id, [\_callback])](#module_Requests.deleteMessage)
   - _inner_
-    - [~listAllCallback](#module_Requests..listAllCallback) : <code>function</code>
     - [~xhrResponseTextCallback](#module_Requests..xhrResponseTextCallback) : <code>function</code>
 
 <a name="module_Requests.listAll"></a>
 
-### Requests.listAll(listMessagesURL, callback)
+### Requests.listAll(listMessagesURL) ⇒ <code>Promise</code>
 
 Makes a GET request to the provided URL and parses the messages that the server returns.
 
 It then sorts them by date (newest first) and stores JSX Messages in an array.
 
-The array is passed as a parameter into the callback function if no error happened.
+Returns a promise of that array.
 
-**Kind**: static method of [<code>Requests</code>](#module_Requests)
+**Kind**: static method of [<code>Requests</code>](#module_Requests)  
+**Returns**: <code>Promise</code> - Promise object representing an array of JSX Messages
 
-| Param           | Type                         | Description                           |
-| --------------- | ---------------------------- | ------------------------------------- |
-| listMessagesURL | <code>string</code>          | The URL to where it sends the request |
-| callback        | <code>listAllCallback</code> | The callback function                 |
+| Param           | Type                | Description                           |
+| --------------- | ------------------- | ------------------------------------- |
+| listMessagesURL | <code>string</code> | The URL to where it sends the request |
 
 <a name="module_Requests.postMessage"></a>
 
@@ -134,16 +133,6 @@ A JSON object containing xhr.responseText is passed as a parameter into the call
 | deleteMessageURL | <code>string</code>                  | The URL to where it sends the request |
 | id               | <code>string</code>                  | ID of message                         |
 | [_callback]      | <code>xhrResponseTextCallback</code> | The callback function                 |
-
-<a name="module_Requests..listAllCallback"></a>
-
-### Requests~listAllCallback : <code>function</code>
-
-**Kind**: inner typedef of [<code>Requests</code>](#module_Requests)
-
-| Param    | Type                               | Description           |
-| -------- | ---------------------------------- | --------------------- |
-| messages | <code>Array.&lt;Message&gt;</code> | Array of JSX Messages |
 
 <a name="module_Requests..xhrResponseTextCallback"></a>
 

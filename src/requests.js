@@ -8,10 +8,6 @@ import Message from "./components/message";
 
 // Defining Callback types for JSDoc
 /**
- * @callback listAllCallback
- * @param {Message[]} messages - Array of JSX Messages
- */
-/**
  * @callback xhrResponseTextCallback
  * @param {object} response - A JSON object containing xhr.responseText
  */
@@ -21,17 +17,17 @@ import Message from "./components/message";
  *
  * It then sorts them by date (newest first) and stores JSX Messages in an array.
  *
- * The array is passed as a parameter into the callback function if no error happened.
+ * Returns a promise of that array.
  * @param {string} listMessagesURL - The URL to where it sends the request
- * @param {listAllCallback} callback - The callback function
+ * @returns {Promise} Promise object representing an array of JSX Messages
  */
-export function listAll(listMessagesURL, callback) {
+export async function listAll(listMessagesURL) {
   const compareMessages = (a, b) => b.createdAt - a.createdAt;
   // Function used for comparing the messages to sort them.
   // Returns either a positive or negative number depending on which message was created first.
 
   // GET request
-  fetch(listMessagesURL)
+  return fetch(listMessagesURL)
     .then((response) => {
       if (!response.ok) {
         // If an error happened, throw the response status code
@@ -67,8 +63,6 @@ export function listAll(listMessagesURL, callback) {
       }
       return messagesJSX;
     })
-    // Process data in callback
-    .then(callback)
     .catch((error) => {
       // If an error ocurred, display in console
       console.error("An error ocurred while fetching messages: ", error);
