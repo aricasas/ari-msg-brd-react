@@ -86,15 +86,20 @@ export async function postMessage(postMessageURL, author, message) {
     },
     // Use our data as the body of the request
     body: JSON.stringify(data),
-  }).then((response) => {
-    if (!response.ok) {
-      // If an error happened, throw the response status code
-      throw new Error(response.status);
-    } else {
-      // Else, return parsed response
-      return response.json();
-    }
-  });
+  })
+    .then((response) => {
+      if (!response.ok) {
+        // If an error happened, throw the response status code
+        throw new Error(response.status);
+      } else {
+        // Else, return parsed response
+        return response.json();
+      }
+    })
+    .catch((error) => {
+      // If an error ocurred, display in console
+      console.error("An error ocurred while posting message: ", error);
+    });
 }
 
 /**
@@ -119,13 +124,18 @@ export async function deleteMessage(deleteMessageURL, id) {
     },
     // Use our data as the body of the request
     body: JSON.stringify(data),
-  }).then((response) => {
-    if (!response.ok) {
-      // If an error happened, throw the response status code
-      throw new Error(response.status);
-    } else {
-      // Else, return parsed response
-      return response.json();
-    }
-  });
+  })
+    .then((response) => {
+      if (!response.ok) {
+        // If an error happened, throw the response status code
+        throw new Error(response.status);
+      } else {
+        // Else, return parsed response
+        return response.json();
+      }
+    })
+    .catch((error) => {
+      // If an error ocurred, display in console
+      console.error("An error ocurred while deleting message: ", error);
+    });
 }
