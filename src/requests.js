@@ -71,10 +71,7 @@ export function listAll(listMessagesURL, callback) {
     .then(callback)
     .catch((error) => {
       // If an error ocurred, display in console
-      console.error(
-        "An error ocurred while fetching messages. Response status code: ",
-        error
-      );
+      console.error("An error ocurred while fetching messages: ", error);
     });
 }
 
