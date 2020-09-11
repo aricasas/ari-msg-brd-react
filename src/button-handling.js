@@ -52,12 +52,11 @@ export function messageDeleteSetup(formsArray) {
       // Delete message from id on form and reload page
       Requests.deleteMessage(
         API_URLS.DELETE_MESSAGE_URL,
-        formData.get("id"),
-        () => {
-          // After deleting, reload page
-          window.location.reload();
-        }
-      );
+        formData.get("id")
+      ).then(() => {
+        // After deleting, reload page
+        window.location.reload();
+      });
     });
   }
 }

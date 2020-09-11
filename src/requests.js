@@ -6,12 +6,6 @@ import Message from "./components/message";
  * @module Requests
  */
 
-// Defining Callback types for JSDoc
-/**
- * @callback xhrResponseTextCallback
- * @param {object} response - A JSON object containing xhr.responseText
- */
-
 /**
  * Makes a GET request to the provided URL and parses the messages that the server returns.
  *
@@ -74,13 +68,12 @@ export async function listAll(listMessagesURL) {
  *
  * If there are no errors, it should post a message to the database.
  *
- * Returns a Promise representing a JSON object containing xhr.responseText if no error happened.
+ * Returns a Promise representing a JSON object containing the response if no error happened.
  * @param {string} postMessageURL - The URL to where it sends the request
  * @param {string} author - Author of message
  * @param {string} message - Text from message
- * @returns {Promise} - Promise object representing a JSON object containing xhr.responseText
+ * @returns {Promise} - Promise object representing a JSON object containing the response
  */
-
 export async function postMessage(postMessageURL, author, message) {
   const data = { author: author, message: message };
 
@@ -107,39 +100,32 @@ export async function postMessage(postMessageURL, author, message) {
 /**
  * Makes a POST request to the provided URL with the id as a JSON encoded string.
  *
- * If there are no errors, ft should delete the message associated with that id from the database.
+ * If there are no errors, it should delete the message associated with that id from the database.
  *
- * A JSON object containing xhr.responseText is passed as a parameter into the callback function if no error happened.
+ * Returns a Promise representing a JSON object containing the response if no error happened.
  * @param {string} deleteMessageURL - The URL to where it sends the request
  * @param {string} id - ID of message
- * @param {xhrResponseTextCallback} [_callback] - The callback function
+ * @returns {Promise} - Promise object representing a JSON object containing the response
  */
-export function deleteMessage(deleteMessageURL, id, _callback) {
-  // Body of the request
-  const body = { id: id };
+export async function deleteMessage(deleteMessageURL, id) {
+  const data = { id: id };
 
-  let xhr = new XMLHttpRequest();
-
-  // Set up POST request at specified URL
-  xhr.open("POST", deleteMessageURL);
-
-  // Specify what format of data we are sending (JSON) through a header
-  xhr.setRequestHeader("Content-Type", "application/json");
-
-  xhr.onload = function () {
-    // When recieving the response
-
-    if (xhr.status === 200) {
-      // Process data in a callback
-      if (typeof _callback !== "undefined") {
-        _callback(JSON.parse(xhr.responseText));
-      }
+  // Return result of POST request
+  return fetch(deleteMessageURL, {
+    method: "POST",
+    headers: {
+      // Specify what format of data we are sending (JSON) through a header
+      "Content-Type": "application/json",
+    },
+    // Use our data as the body of the request
+    body: JSON.stringify(data),
+  }).then((response) => {
+    if (!response.ok) {
+      // If an error happened, throw the response status code
+      throw new Error(response.status);
     } else {
-      // If an error happens
-      console.log("Request failed.  Returned status of " + xhr.status);
+      // Else, return parsed response
+      return response.json();
     }
-  };
-
-  // Send request
-  xhr.send(JSON.stringify(body));
+  });
 }
