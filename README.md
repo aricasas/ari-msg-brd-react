@@ -21,6 +21,14 @@
 </dd>
 </dl>
 
+## Functions
+
+<dl>
+<dt><a href="#updateMessages">updateMessages(messagesWrapper)</a></dt>
+<dd><p>Gets the messages from the database and renders them inside the wrapper.</p>
+</dd>
+</dl>
+
 <a name="module_Requests"></a>
 
 ## Requests
@@ -121,4 +129,15 @@ Constant string storing URL for deleting messages through my API.
 
 Constant string storing URL for getting a list of messages through my API.
 
-**Kind**: static property of [<code>API_URLS</code>](#API_URLS)
+**Kind**: static property of [<code>API_URLS</code>](#API_URLS)  
+<a name="updateMessages"></a>
+
+## updateMessages(messagesWrapper)
+
+Gets the messages from the database and renders them inside the wrapper.
+
+**Kind**: global function
+
+| Param           | Type                     | Description                                      |
+| --------------- | ------------------------ | ------------------------------------------------ |
+| messagesWrapper | <code>HTMLElement</code> | A wrapper in which the messages will be rendered |
