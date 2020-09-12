@@ -5,14 +5,9 @@
 
 ---
 
-# Documentation
-
 ## Modules
 
 <dl>
-<dt><a href="#module_ButtonHandling">ButtonHandling</a></dt>
-<dd><p>Functions wich set up the behaviour for the buttons in the page.</p>
-</dd>
 <dt><a href="#module_Requests">Requests</a></dt>
 <dd><p>Functions containing HTTP requests to my API.</p>
 </dd>
@@ -26,40 +21,6 @@
 <p>Every call to the API will be using these URLs so if any API endpoint changes. It can be easily modified here.</p>
 </dd>
 </dl>
-
-<a name="module_ButtonHandling"></a>
-
-## ButtonHandling
-
-Functions wich set up the behaviour for the buttons in the page.
-
-- [ButtonHandling](#module_ButtonHandling)
-  - [.messageUploaderSetup(form)](#module_ButtonHandling.messageUploaderSetup)
-  - [.messageDeleteSetup(formsArray)](#module_ButtonHandling.messageDeleteSetup)
-
-<a name="module_ButtonHandling.messageUploaderSetup"></a>
-
-### ButtonHandling.messageUploaderSetup(form)
-
-Adds an event listener to the form in order to post a message when the submit button is clicked.
-
-**Kind**: static method of [<code>ButtonHandling</code>](#module_ButtonHandling)
-
-| Param | Type                     | Description                               |
-| ----- | ------------------------ | ----------------------------------------- |
-| form  | <code>HTMLElement</code> | The form object from the message uploader |
-
-<a name="module_ButtonHandling.messageDeleteSetup"></a>
-
-### ButtonHandling.messageDeleteSetup(formsArray)
-
-Adds an event listener to every form in the array to delete the message when the delete button is clicked.
-
-**Kind**: static method of [<code>ButtonHandling</code>](#module_ButtonHandling)
-
-| Param      | Type                                          | Description                                                    |
-| ---------- | --------------------------------------------- | -------------------------------------------------------------- |
-| formsArray | <code>HTMLCollectionOf.&lt;Element&gt;</code> | An array containing a form HTMLElement for every delete button |
 
 <a name="module_Requests"></a>
 
