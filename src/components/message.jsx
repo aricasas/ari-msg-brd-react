@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { API_URLS } from "./../index";
+import { API_URLS, updateMessages } from "./../index";
 import { deleteMessage } from "./../requests";
 
 class Message extends Component {
@@ -11,8 +11,8 @@ class Message extends Component {
   }
   deleteThisMessage() {
     deleteMessage(API_URLS.DELETE_MESSAGE_URL, this.props.id).then(() => {
-      // After deleting, reload page
-      window.location.reload();
+      // Update messages
+      updateMessages(document.getElementById("messages-wrapper"));
     });
   }
   render() {

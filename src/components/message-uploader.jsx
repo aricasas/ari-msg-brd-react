@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { API_URLS } from "./../index";
+import { API_URLS, updateMessages } from "./../index";
 import { postMessage } from "./../requests";
 
 class MessageUploader extends Component {
   constructor(props) {
     super(props);
 
+    this.form = React.createRef();
     this.authorInput = React.createRef();
     this.messageTextInput = React.createRef();
 
@@ -21,15 +22,19 @@ class MessageUploader extends Component {
     const author = this.authorInput.current.value;
     const message = this.messageTextInput.current.value;
 
+    // Reset form
+    this.form.current.reset();
+
     // Post message
     postMessage(API_URLS.POST_MESSAGE_URL, author, message).then(() => {
-      window.location.reload();
+      // Update messages
+      updateMessages(document.getElementById("messages-wrapper"));
     });
   }
 
   render() {
     return (
-      <form id="message-uploader-form" onSubmit={this.submit}>
+      <form id="message-uploader-form" ref={this.form} onSubmit={this.submit}>
         <label htmlFor="author">Author:</label>
         <input
           ref={this.authorInput}

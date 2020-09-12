@@ -25,14 +25,23 @@ export const API_URLS = {
     "https://p8bwius490.execute-api.us-east-1.amazonaws.com/dev/listAll",
 };
 
+/**
+ * Gets the messages from the database and renders them inside the wrapper.
+ * @param {HTMLElement} messagesWrapper - A wrapper in which the messages will be rendered
+ */
+export async function updateMessages(messagesWrapper) {
+  // Get messages from database
+  Requests.listAll(API_URLS.LIST_MESSAGES_URL).then((messages) => {
+    // Render messages
+    ReactDOM.render(messages, messagesWrapper);
+  });
+}
+
 // Render title inside title-wrapper
 ReactDOM.render(<Title />, document.getElementById("title-wrapper"));
 
-// Get messages from database
-Requests.listAll(API_URLS.LIST_MESSAGES_URL).then((messages) => {
-  // Render messages
-  ReactDOM.render(messages, document.getElementById("messages-wrapper"));
-});
+// Render messages
+updateMessages(document.getElementById("messages-wrapper"));
 
 // Render message uploader
 ReactDOM.render(
